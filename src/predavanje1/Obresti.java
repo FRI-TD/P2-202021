@@ -1,3 +1,5 @@
+package predavanje1;
+
 /*
    Program Obresti izračuna in izpiše znesek na
    bančnem računu po n letih, pri dani osnovni
