@@ -1,15 +1,24 @@
-package predavanje2;
+package predavanje3;
 
 /**
- * Izpis statistike niza.
+ * Izpis statistike niza. Program je predalana verzija programa iz prejsnjega tedna
+ * (predavanja2.StatistikaNiza). Razlika: v novem programu je koda lepse 
+ * strukturirana, koda za "izracun" statistike je zbrana v metodi z imenom 
+ * izpisiStatistiko(). Metodo lahko uporabim veckrat.
  * 
  * @author tomaz
  */
 public class StatistikaNiza {
-  public static void main(String [] args) {
-     String niz = "Danes je lep dan!"; 
-     
-     int dolzina = niz.length();   // dolzina niza
+  
+  /**
+   * Metoda za "izracun" in izpis statistike niza. 
+   * - metoda je "tipa void", kar pomeni, da ne vraca rezultata;
+   * - metoda mora biti "static", ker jo klicemo iz (staticne) metode main().
+   * 
+   * @param niz 
+   */
+  static void izpisiStatistiko(String niz) {
+    int dolzina = niz.length();   // dolzina niza
      
      // metoda replaceAll() zamenja vse presledke v prazne nize in 
      // vrne spremenjeni niz; tega "ujamemo" v spremenljivko "brezPresledkov"
@@ -30,7 +39,16 @@ public class StatistikaNiza {
      for(int i=dolzina-1; i>=0; i=i-1) {
        System.out.print(niz.charAt(i));
      }
-     System.out.println();
+     System.out.println();     
+  }
+  
+  public static void main(String [] args) {
+     String niz = "Danes je lep dan!";      
+     izpisiStatistiko(niz); // klic metode
      
+     System.out.println("");
+     
+     // se en klic metode z drugim parametrom (izpis statistike drugega niza)
+     izpisiStatistiko("Tretji teden predavanj"); 
   }
 }
