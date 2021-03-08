@@ -27,11 +27,13 @@ public class Obresti {
     // uporabimo metodo Math.pow(x,n).
     Gn = G * Math.pow(1 + p/100, n);
 
-    // Izpis rezultata
-    // Zanimivo: pri izpisu lahko "seštevamo" različne tipe
-    // (v prvem izpisu, na primer, String in double);
-    // java bo double vrednost najprej pretvorila v String,
-    // nato bo seštela (združila) dva niza.
+    /* 
+       Izpis rezultata
+       Zanimivo: pri izpisu lahko "seštevamo" različne tipe
+       (v prvem izpisu, na primer, String in double);
+       java bo double vrednost najprej pretvorila v String,
+       nato bo seštela (združila) dva niza.
+    */
     System.out.println("Glavnica: " + G);
     System.out.println("Število let: " + n);
     System.out.println("Obrestna mera: " + p);
