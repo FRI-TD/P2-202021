@@ -3,62 +3,69 @@ package predavanje6;
 import java.util.Scanner;
 
 /**
- * Sah - program, ki dvema igralcema omogoča igranje igre šah:
- *
- *    - program izdela ”igralno ploščo”, na kateri je začetna postavitev 
- *      in ploščo izriše;
- *
- *    - program izmenjaje omogoča izvajanje potez: izmenjaje ”kliče” igralca, 
- *      da vpiše potezo v obliki: izhodišče-cilj (na primer: c2-c4)
- * 
- *    - program si zapomni izvedena poteze za izpis zgodovine in za izvajanje
- *      operacije razveljavitev (undo)
- * 
- *    - poleg potez lahko uporabnik vpiše tudi ukaze :konec (konec izvajanja programa)
- *      :undo (razveljavi potezo), :zgodovina (izpis zgodovine potez), :obrni 
- *      (obrat igralne plčošče)
- * 
- *    Igralno ploščo izrišemo s pomočjo Unicode znakov (bele figure imajo kode 
- *    od 0x2654, črne pa od 0x265A naprej. 
- * 
- *    Primer izrisane igralne plošče na začetku igre
- *     
-    A   B   C   D   E   F   G   H 
-  ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓
-1 ┃ ♖ ┃ ♘ ┃ ♗ ┃ ♔ ┃ ♕ ┃ ♗ ┃ ♘ ┃ ♖ ┃
-  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫
-2 ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃
-  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫
-3 ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃
-  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫
-4 ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃
-  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫
-5 ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃
-  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫
-6 ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃
-  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫
-7 ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃
-  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫
-8 ┃ ♜ ┃ ♞ ┃ ♝ ┃ ♚ ┃ ♛ ┃ ♝ ┃ ♞ ┃ ♜ ┃
-  ┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛
-  
+ * Sah - program, ki dvema igralcema omogoča igranje igre šah:                            <br>
+ *                                                                                        <br>
+ *    - program izdela ”igralno ploščo”, na kateri je začetna postavitev                   
+ *      in ploščo izriše;                                                                 <br>
+ *                                                                                        <br>
+ *    - program izmenjaje omogoča izvajanje potez: izmenjaje ”kliče” igralca,             
+ *      da vpiše potezo v obliki: izhodišče-cilj (na primer: c2-c4);                      <br>
+ *                                                                                        <br>
+ *    - program si zapomni izvedena poteze za izpis zgodovine in za izvajanje             
+ *      operacije razveljavitev (undo) *      in ploščo izriše;                           <br>
+ *                                                                                        <br>
+ *    - poleg potez lahko uporabnik vpiše tudi ukaze :konec (konec izvajanja programa)    
+ *      :undo (razveljavi potezo), :zgodovina (izpis zgodovine potez), :obrni             
+ *      (obrat igralne plčošče)                                                           <br>
+ *                                                                                        <br>
+ *    Igralno ploščo izrišemo s pomočjo Unicode znakov (bele figure imajo kode            
+ *    od 0x2654, črne pa od 0x265A naprej).                                               <br>
+ *                                                                                        <br>
+ *    Primer izrisane igralne plošče na začetku igre                                      <br>
+ *                                                                                        <br>
+ <pre style="font-family:Courier New;">
+    A   B   C   D   E   F   G   H                                                         
+  ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓                
+1 ┃ ♖ ┃ ♘ ┃ ♗ ┃ ♔ ┃ ♕ ┃ ♗ ┃ ♘ ┃ ♖ ┃                
+  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫                
+2 ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃ ♙ ┃                
+  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫                
+3 ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃                
+  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫                
+4 ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃                
+  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫                
+5 ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃                
+  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫                
+6 ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃                
+  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫                
+7 ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃ ♟ ┃                
+  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫                
+8 ┃ ♜ ┃ ♞ ┃ ♝ ┃ ♚ ┃ ♛ ┃ ♝ ┃ ♞ ┃ ♜ ┃                
+  ┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛                
+</pre>
  * 
  * 
  * @author tomaz
  */
 public class Sah {
-  // Unicode kode za znaka za oba (belega in črnega) kralja; ostale 
-  // figure imajo kode kralj+1, kralj+2, ...
-  // Atributa sta "statična", da ju bom lahko uporabljal v statičnih metodah.
-  static int beliKralj = 0x2654;
-  static int crniKralj = 0x265A;
+  /**
+   * Unicode koda za znaka za belega kralja; ostale bele figure imajo kode beliKralj+1, beliKralj+2, ...
+   */
+  public static int beliKralj = 0x2654;
+  
+  /**
+   * Unicode koda za znaka za črnega kralja; ostale črne figure imajo kode crniKralj+1, crniKralj+2, ...
+   */
+  public static int crniKralj = 0x265A;
   
   // tabeli, ki ju bomo napolnili z znaki za bele in črne figure
   static char[] beleFigure;
   static char[] crneFigure;
   
-  // potrebujemo za izpis igralca (da vemo, kdo je na potezi)
-  static String[] igralca = new String[] {"beli", "črni"};
+  /**
+   * Potrebujem za izpis igralca (da vemo, kdo je na potezi)
+   */
+  public static String[] igralca = new String[] {"beli", "črni"};
 
   /**
    * Metoda vrne tabelo znakov s kodamo odKje, okKje+1, odKje/2, ..., odKje+koliko-1.
@@ -67,9 +74,9 @@ public class Sah {
    * 
    * @param odKje začetna Unicode koda
    * @param koliko koliko znakov naj vsebuje tabela
-   * @return 
+   * @return tabelo zaporednih znakov
    */
-  static char[] vrniTabelo(int odKje, int koliko) {
+  public static char[] vrniTabelo(int odKje, int koliko) {
     char[] rezultat = new char[koliko];
     
     for (int i = 0; i < koliko; i++) 
@@ -83,8 +90,9 @@ public class Sah {
    * Napolnimo 1., 2, (z belimi) 7. in 8. (s črnimi) vrsto fugurami,
    * v ostale vrste pa pišemo presledke (kot nevidni znak - označuje 
    * prazno polje). 
+   * @param sahovnica sahovnica, v katero zapišem znake
    */
-  static void napolniSahovnico(char[][] sahovnica) {
+  public static void napolniSahovnico(char[][] sahovnica) {
     // figure prve vrste; v tabeli beleFigure so (po vrsti) zapisane figure:
     // Kralj(0), Kraljica(1), Trdnjava(2), Tekač(3), Konj(4) in Kmet(5)
     sahovnica[0][0] = sahovnica[0][7] = beleFigure[2]; //trdnjavi
@@ -118,18 +126,18 @@ public class Sah {
    * ponovi isti vzorec (znak---), pri tem je "znak" v prvem izpisu vzorca drugačen
    * drugačen (a0), v ostalih izpisih pa enak (a). Vodoravna črta je zapisana v b. 
    * Vrstica se konča z znakom c.
-   * Metodo uporabljamo za izpis prve vrstice 
-   *    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓
-   * vmesni vrstic 
-   *    ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫
-   * in zadnje vrstice okvirja
-   *    ┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛
+   * Metodo uporabljamo za izpis prve vrstice <br>
+   *    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓     <br>
+   * vmesni vrstic                            <br>
+   *    ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫     <br>
+   * in zadnje vrstice okvirja                <br>
+   *    ┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛     <br>
    * @param a0 znak za levi rob
    * @param a  znak za sredinsko mejo
    * @param b  znak za vodoravno črto
    * @param c   znak za desni rob
    */
-  static void izpisiVrsticoZnakov(char a0, char a, char b, char c) {    
+  public static void izpisiVrsticoZnakov(char a0, char a, char b, char c) {    
     System.out.print("  ");
     for (int i = 0; i < 8; i++) {      
       System.out.printf("%c%c%c%c", (i==0 ? a0 : a), b, b, b);
@@ -143,9 +151,9 @@ public class Sah {
    * in zgornjo vrstico). 
    * Elemente šahovnice (šahovske figure) preberem iz sahovnica[i][j] 
    * in izpisujem v vmesnih vrsticah med okviri.
-   * @param sahovnica 
+   * @param sahovnica sahovica, v katero zapišem znake
    */
-  static void izpisiSahovnico(char[][] sahovnica) {
+  public static void izpisiSahovnico(char[][] sahovnica) {
     System.out.print("   ");
     for (int i = 0; i < 8; i++) {
       System.out.printf(" %c  ", 'A'+i);
@@ -172,7 +180,7 @@ public class Sah {
    * @param igralec igralec, ki je ne potezi
    * @return prebrano potezo
    */
-  static String preberiPotezo(int igralec) {
+  public static String preberiPotezo(int igralec) {
     Scanner sc = new Scanner(System.in);
     System.out.printf("Vpiši potezo (%s): ", igralca[igralec]);
     String poteza = sc.next();
@@ -184,8 +192,10 @@ public class Sah {
    * Metoda pretvori iz vhoda, ki je oblike  v tabelo, ki vsebuje 4 
    * števila - koordinati izhodišča in cilja poteze. Primer: metoda potezo
    * "a2-d4" pretvori v tabela z elementi (0, 1, 3, 3).
+   * @param poteza poteza (oblike ci-ci), ki jo pretvarjam
+   * @return tabela s koordinatami poteze
    */
-  static int[] pretvoriPotezo(String poteza) {
+  public static int[] pretvoriPotezo(String poteza) {
     int [] t = new int [4];
     
     t[1] = poteza.charAt(0) - 'a';
@@ -206,9 +216,9 @@ public class Sah {
    * @param sahovnica trenutna postavitev igre
    * @param poteza poteza, ki jo preverjamo
    * @param igralec igralec, ki je na potezi
-   * @return 
+   * @return true, če je poteza pravilan, false sicer
    */
-  static boolean jePravilnaPoteza(char[][] sahovnica, String poteza, int igralec) {
+  public static boolean jePravilnaPoteza(char[][] sahovnica, String poteza, int igralec) {
     // poteza mora biti oblike ci-ci (npr. a4-b5)
     if ((poteza.length() != 5) || (poteza.charAt(2) != '-'))
       return false;
@@ -249,7 +259,7 @@ public class Sah {
   
   /**
    * Glavna metoda, v kateri je implementirana vsa logika igre:
-   *
+   *<pre>
    *   igraj():
    *     inicializiraj igro
    *     ponavljaj
@@ -269,9 +279,9 @@ public class Sah {
    *           preklopi na naslednjega igralca
    *         sicer
    *           javi napako (nepravilna poteza)
-   *   
+   *</pre>   
    */
-  static void igraj() {
+  public static void igraj() {
     // dvodimenzionalna tabela velikost 8x8
     char[][] sahovnica = new char[8][8];
     
@@ -397,7 +407,10 @@ public class Sah {
     }
   }
   
-  
+  /**
+   * Metoda <code>main()</code> kliče metodo <code>igraj()</code>, kjer je zbrana vsa logika igre. 
+   * @param args Program <code>Sah</code> ne uporablja argumentov.
+   */
   public static void main(String[] args) {
     igraj();
   }
