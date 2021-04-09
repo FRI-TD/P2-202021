@@ -1,6 +1,6 @@
-package si.fri.kodiranje.main;
+package predavanje7.si.kodiranje.main;
 
-import si.fri.kodiranje.io.BeriPisi;
+import predavanje7.si.kodiranje.io.BeriPisi;
 
 
 

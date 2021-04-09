@@ -1,4 +1,4 @@
-package si.fri.kodiranje.io;
+package predavanje7.si.kodiranje.io;
 
 /**
  * Test delovanja metod preberiDatoteko() in zapisiDatoteko().

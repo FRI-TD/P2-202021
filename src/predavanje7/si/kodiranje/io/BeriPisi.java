@@ -1,4 +1,4 @@
-package si.fri.kodiranje.io;
+package predavanje7.si.kodiranje.io;
 
 import java.io.File;
 import java.io.PrintWriter;

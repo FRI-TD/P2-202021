@@ -1,4 +1,4 @@
-package si.fri.kodiranje.main;
+package predavanje7.si.kodiranje.main;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package si.fri.kodiranje.gui;
+package predavanje7.si.kodiranje.gui;
 
 /**
  * Razred, v katerem narišemo okno.
