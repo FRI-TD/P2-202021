@@ -10,11 +10,11 @@ import java.util.Scanner;
  */
 public class OI {
 
-  public static void main(String[] args) {
+  public static HashMap<String, Drzava> preberiDrzave(String imeDatoteke) {
     HashMap<String, Drzava> drzave = new HashMap();
     
     try {
-      Scanner sc = new Scanner(new File("viri/drzave.txt"));
+      Scanner sc = new Scanner(new File(imeDatoteke));
       // dokler so v datoteki še podatki ...
       while(sc.hasNextLine()) {
         // ... preberem vrstico po vrstici ...
@@ -34,6 +34,14 @@ public class OI {
     } catch (Exception e) {
       System.out.println("Napaka pri branju datoteke: " + e.toString());      
     }
+    return drzave;
+  }
+  
+  public static void main(String[] args) {
+    //args = new String[]{"viri/drzave.txt"};
+    
+    HashMap<String, Drzava> drzave = preberiDrzave(args[0]);
+    
     
 //    Izpis vseh prebranih držav    
 //    for (String kratica : drzave.keySet()) {
